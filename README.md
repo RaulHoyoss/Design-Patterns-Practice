@@ -7,7 +7,8 @@ Each pattern includes a description, a diagram with an example, guidance on when
 
 ## 📚 Index
 
-- [Factory Method](#factory-method)
+- [Factory_Method](#factory-method)
+- [Abstract_Factory](#-abstract-factory)
 - [Singleton](#singleton)
 - [Observer](#observer)
 - [Strategy](#strategy)
@@ -70,19 +71,59 @@ Sending PUSH message  to user...
 
 ---
 
-
+##  🌿 Abstract Factory
 
 
 ### 🧠 General Description
 
+- **Abstract Factory:** Declares interfaces for creating families of related or dependent objects without specifying their concrete classes.  
+- **Concrete Factories:** Implement these interfaces to create specific variants of products.  
+- **Abstract Products:** Define a common interface for each kind of product (e.g., `Herbivore`, `Carnivore`).  
+- **Concrete Products:** Implement the product interfaces, representing specific variants.  
+- **Client:** Works only with interfaces — it doesn’t depend on concrete implementations.  
+
+The main goal is to **ensure that products belonging to the same family are used together**, while **decoupling object creation from object usage**.
+
 
 ### Diagram of example
+
+![Abstract_Factory](images/abstract_factory.png)
 
 
 ### 🚀 When to use it
 
+| Situation | Description |
+|-----------|-------------|
+| Families of related objects | When a system needs to create groups of related or dependent objects together. |
+| Decoupling | When client code should not depend on concrete classes. |
+| Multiple product variants | When you want to switch entire families of products easily. |
+| Consistency | To ensure that compatible products are used together. |
+
 ### 💡Benefists
 
-### ⚠️ Disadvanteges 
+| Benefit | Description |
+|----------|-------------|
+| Reduced coupling | The client depends only on abstract interfaces, not concrete classes. |
+| Open/Closed Principle | You can add new product families without modifying existing code. |
+| Consistency | Ensures that products from the same family are compatible. |
+| Centralized creation | Each factory handles the creation of its own family. |
+
+### ⚠️ Disadvanteges
+
+- Increases the number of classes and interfaces in the project.  
+- Can be overkill for simple object creation scenarios.
+
 
 ### 🧪 Example output
+
+
+```text
+--- Jungle animals ----
+The deer eats grass
+The lion eats the deer.
+--- Farm animals ----
+The cow eats grass.
+The wolf eats the cow.
+````
+
+---
