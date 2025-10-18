@@ -9,7 +9,7 @@ Each pattern includes a description, a diagram with an example, guidance on when
 
 - [Factory_Method](#-factory-method)
 - [Abstract_Factory](#-abstract-factory)
-- [Singleton](#-builder-pattern)
+- [Builder](#-builder-pattern)
 - [Observer](#observer)
 - [Strategy](#strategy)
 - [Decorator](#decorator)
