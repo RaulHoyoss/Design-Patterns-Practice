@@ -7,9 +7,9 @@ Each pattern includes a description, a diagram with an example, guidance on when
 
 ## 📚 Index
 
-- [Factory_Method](#factory-method)
+- [Factory_Method](#-factory-method)
 - [Abstract_Factory](#-abstract-factory)
-- [Singleton](#singleton)
+- [Singleton](#-builder-pattern)
 - [Observer](#observer)
 - [Strategy](#strategy)
 - [Decorator](#decorator)
@@ -124,6 +124,79 @@ The lion eats the deer.
 --- Farm animals ----
 The cow eats grass.
 The wolf eats the cow.
-````
+```
+
+---
+
+## 🍕 Builder Pattern 
+
+### 🧠 General Description
+
+- **Builder:** Declares an interface for creating parts of a complex object (`Pizza`) step by step.  
+- **Concrete Builders:** Implement the Builder interface to construct specific variants of the product (`AmericanPizzaBuilder`, `ItalianPizzaBuilder`, `VegetarianPizzaBuilder`).  
+- **Product:** The complex object being built (`Pizza`), which may consist of several parts: size, dough, sauce, ingredients, stuffed crust, etc.  
+- **Director:** Defines the order in which the steps are executed to build a specific pizza configuration.  
+- **Client:** Uses the Director and a Builder to obtain a fully constructed Pizza without depending on its concrete classes.  
+
+The main goal is to **separate the construction of a complex object from its representation**, allowing the same construction process to create different types of pizzas.
+
+### Diagram of example
+
+![Builder](images/builder.png)
+
+
+### 🚀 When to use it
+
+| Situation | Description |
+|-----------|-------------|
+| Complex objects | When an object requires multiple steps to be created. |
+| Variants of a product | When the same construction process can produce different types of products. |
+| Decoupling construction | When the client should not depend on concrete classes. |
+| Step-by-step construction | When you want to construct an object piece by piece with flexibility. |
+
+
+### 💡 Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| Flexibility | Allows creating different representations of a product using the same construction process. |
+| Separation of concerns | The construction logic is separated from the product representation. |
+| Reusability | Builders and Director can be reused to construct different product configurations. |
+| Clear process | Step-by-step construction ensures clarity and maintainability. |
+
+
+### ⚠️ Disadvantages
+
+- Increases the number of classes in the project.  
+- May be overkill for simple objects that don’t require complex construction.  
+
+
+### 🧪 Example output
+```
+American Pizza:{size=LARGE, dough=THICK, sauce=BBQ, ingredients=[Pepperoni, Bacon, Chicken, Mozzarella, Cheddar, Onion], stuffedCrust=true}
+-------------------------------------------------
+Italian Pizza:{size=MEDIUM, dough=THIN, sauce=TOMATO, ingredients=[Mozzarella, Basil, Cherry tomatoes, Black olives, Prosciutto, Olive oil], stuffedCrust=false}
+-------------------------------------------------
+Vegetarian Pizza:{size=SMALL, dough=WHOLE_WHEAT, sauce=PESTO, ingredients=[Mozzarella, Mushrooms, Peppers, Onion, Cherry tomatoes, Olive oil], stuffedCrust=false}
+```
+
+---
+
+## 🍕 Builder Pattern 
+
+### 🧠 General Description
+
+### Diagram of example
+
+### 🚀 When to use it
+
+### 💡 Benefits
+
+### ⚠️ Disadvantages
+
+### 🧪 Example output
+```
+
+```
 
 ---
