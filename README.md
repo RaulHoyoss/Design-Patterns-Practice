@@ -10,9 +10,7 @@ Each pattern includes a description, a diagram with an example, guidance on when
 - [Factory_Method](#-factory-method)
 - [Abstract_Factory](#-abstract-factory)
 - [Builder](#-builder-pattern)
-- [Observer](#observer)
-- [Strategy](#strategy)
-- [Decorator](#decorator)
+- [Prototype](#-prototype-pattern)
 
 ---
 
@@ -182,6 +180,67 @@ Vegetarian Pizza:{size=SMALL, dough=WHOLE_WHEAT, sauce=PESTO, ingredients=[Mozza
 
 ---
 
+## 🐉 Prototype Pattern
+
+### 🧠 General Description
+
+- **Prototype:** Specifies an interface (`Prototype`) for cloning itself.  
+- **Concrete Prototypes:** Implement the Prototype interface (`Dragon`, `Golem`) and define a method to return a copy of themselves.  
+- **CreatureRegistry:** Maintains a collection of prefabricated prototypes. Clients can request a clone by key without knowing the concrete classes.  
+- **Client:** Requests a clone of a prototype rather than creating a new instance from scratch.  
+
+The main goal is to **create new objects by cloning existing prototypes**, avoiding the need to repeatedly initialize complex objects or create numerous subclasses.
+
+### Diagram of example
+
+![Prototype](images/prototype.png)
+
+### 🚀 When to use it
+| Situation | Description |
+|-----------|-------------|
+| Many similar objects | When objects share most fields and differ only in some attributes. |
+| Expensive initialization | When creating a new object from scratch is costly. |
+| Avoid subclass explosion | When creating variations of an object using subclasses would produce too many classes. |
+| Prefabricated configurations | When you want preconfigured prototypes ready to clone. |
+
+### 💡 Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| Performance | Cloning an existing object can be faster than building a new one from scratch. |
+| Simplifies object creation | Avoids repeating complex initialization for every new object. |
+| Flexibility | You can create new instances dynamically at runtime from existing prototypes. |
+| Reduced subclassing | Avoids creating multiple subclasses for small variations. |
+
+### ⚠️ Disadvantages
+
+- Requires careful implementation of `clone()` to avoid shared references when doing deep cloning.  
+- Can increase memory usage if many prefabs are stored in the registry.  
+- Cloning logic may become complex for objects with deep or circular references.
+
+### 🧪 Example output
+```
+Available prototypes:
+StoneGolem
+IceDragon
+FireDragon
+AbsoluteGolem
+
+Are the same dragon d1 & d2?
+false
+
+Are clones and independents dragons?
+true
+
+List adding new Prototype:
+StoneGolem
+MudGolem
+IceDragon
+FireDragon
+AbsoluteGolem
+```
+
+---
 ## 🍕 Builder Pattern 
 
 ### 🧠 General Description
@@ -198,5 +257,4 @@ Vegetarian Pizza:{size=SMALL, dough=WHOLE_WHEAT, sauce=PESTO, ingredients=[Mozza
 ```
 
 ```
-
 ---
