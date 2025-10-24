@@ -246,7 +246,7 @@ AbsoluteGolem
 
 ---
 
-## 🛰️ Singleton Pattern
+## 🛸 Singleton Pattern
 
 ### 🧠 General Description
 - **Singleton:** Ensures that **only one instance** of a class exists throughout the application and provides a **global access point** to it.  
@@ -258,7 +258,7 @@ The main goal of this pattern is to **restrict the instantiation of a class to a
 
 ### Diagram of example
 
-![Singleton](images/singleton.png.png)
+![Singleton](images/singleton.png)
 
 
 
