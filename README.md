@@ -7,10 +7,14 @@ Each pattern includes a description, a diagram with an example, guidance on when
 
 ## 📚 Index
 
+
+### Creational
+
 - [Factory_Method](#-factory-method)
 - [Abstract_Factory](#-abstract-factory)
 - [Builder](#-builder-pattern)
 - [Prototype](#-prototype-pattern)
+- [Singleton](#-singleton-pattern)
 
 ---
 
@@ -241,20 +245,76 @@ AbsoluteGolem
 ```
 
 ---
-## 🍕 Builder Pattern 
+
+## 🛰️ Singleton Pattern
 
 ### 🧠 General Description
+- **Singleton:** Ensures that **only one instance** of a class exists throughout the application and provides a **global access point** to it.  
+- **Context in this example:** The `DroneControlCenter` acts as the single instance that coordinates all drones in the system.  
+- **Clients:** The `Drone` objects represent entities that interact with the Singleton to register themselves, send data, and receive commands.  
+
+The main goal of this pattern is to **restrict the instantiation of a class to a single object** while providing a **centralized access point** that can be used across different parts of the program.
+
 
 ### Diagram of example
 
+![Singleton](images/singleton.png.png)
+
+
+
 ### 🚀 When to use it
+
+| Situation | Description |
+|-----------|-------------|
+| Single shared resource | When exactly one instance must coordinate actions across the system (e.g., configuration manager, database connection, logging system). |
+| Global access point | When multiple components need a single object accessible from anywhere. |
+| Controlled instantiation | When you need to prevent uncontrolled creation of instances. |
+| Thread safety required | When multiple threads might attempt to access or create the Singleton at the same time. |
 
 ### 💡 Benefits
 
+| Benefit | Description |
+|---------|-------------|
+| Single instance | Guarantees that only one object exists throughout the application. |
+| Global access | Provides a simple and controlled way to access the instance. |
+| Resource management | Avoids conflicts and saves resources by centralizing access. |
+| Thread-safe option | Can be implemented safely in multithreaded environments using double-checked locking. |
+
 ### ⚠️ Disadvantages
+
+- Can introduce **global state**, making testing and debugging harder.  
+- May **violate the Single Responsibility Principle** (if it handles too many concerns).  
+- **Tight coupling:** Clients depend on the Singleton class directly.  
+- May cause issues in concurrent or distributed systems if not properly synchronized.  
+
 
 ### 🧪 Example output
 ```
+=== Test 1: Basic singleton ===
+Drone control center initialized
+Hava c1 & c2 same instance? true
+HashCode c1: 1746572565
+HashCode c2: 1746572565
+
+=== Test 2: Basic singleton ===
+Dronne1 registred.
+Drone 1 connected to control center.
+Dronne2 registred.
+Drone 2 connected to control center.
+Dronne3 registred.
+Drone 3 connected to control center.
+Active drones: [Dronne1, Dronne2, Dronne3]
+Sending command: "Return to base" to all drones...
+Drone 1 received command: Return to base
+Drone 2 received command: Return to base
+Drone 3 received command: Return to base
+
+=== Test 3: Thread-safe test ===
+DroneThread-6 -> 1746572565
+DroneThread-8 -> 1746572565
+DroneThread-3 -> 1746572565
+DroneThread-1 -> 1746572565
+DroneThread-2 -> 1746572565
 
 ```
 ---
