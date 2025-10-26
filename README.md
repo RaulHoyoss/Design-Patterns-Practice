@@ -16,6 +16,9 @@ Each pattern includes a description, a diagram with an example, guidance on when
 - [Prototype](#-prototype-pattern)
 - [Singleton](#-singleton-pattern)
 
+### Structuras
+
+- [Adapter](#-adapter-pattern)
 ---
 
 ## 🏭 Factory Method
@@ -317,4 +320,65 @@ DroneThread-1 -> 1746572565
 DroneThread-2 -> 1746572565
 
 ```
+---
+
+## 🎸 Adapter Pattern
+
+### 🧠 General Description
+- **Adapter:** Allows classes with **incompatible interfaces** to work together by converting the interface of a class into another interface that a client expects.  
+- **Context in this example:** The `MusicPlayer` interface defines a standard `play()` method. Classes like `MP3Player`, `WAVPlayer`, and `FLACPlayer` have different ways of playing audio. Adapters (`WAVAdapter`, `FLACAdapter`) allow these players to be used interchangeably.  
+- **Clients:** The main program (`Main`) only interacts with `MusicPlayer` objects, without worrying about the underlying format or implementation.
+
+The main goal of this pattern is to **allow objects with incompatible interfaces to collaborate**, promoting **flexibility and code reuse** without modifying existing classes.
+
+
+
+### Diagram of example
+
+![Adapter](images/adapter.png)
+
+### 🚀 When to use it
+
+| Situation | Description |
+|-----------|-------------|
+| Incompatible interfaces | When you have classes that cannot work together because their methods or interfaces differ. |
+| Code reuse | When you want to use existing classes without modifying them. |
+| Flexible integration | When you need to integrate third-party libraries or legacy code into your system. |
+| Unified API | When you want your client code to interact with a single, consistent interface. |
+
+---
+
+### 💡 Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| Compatibility | Lets classes with incompatible interfaces work together. |
+| Code reuse | You can use existing code without modification. |
+| Decoupling | The client depends on the adapter interface, not on specific implementations. |
+| Flexible extension | Adding support for new formats only requires creating a new adapter. |
+
+---
+
+### ⚠️ Disadvantages
+
+- Adds **extra classes** (one adapter per incompatible class).  
+- Can introduce a **small performance overhead** due to delegation.  
+- May **increase complexity** if adapters are overused.  
+- Requires careful design to avoid adapters becoming “God objects” that handle too many conversions.  
+
+---
+
+### 🧪 Example output
+
+```
+ Playing songs with Universal Player:
+
+reproducing <Blinding Lights_TheWeekend>.mp3
+FLACAdapter ? using an external FLACPlayer...
+reproducing <Blinding Lights_TheWeekend>.flac
+WAVAdapter ? using an external WAVPlayer...
+reproducing <Blinding Lights_TheWeekend>.wav
+
+```
+
 ---
