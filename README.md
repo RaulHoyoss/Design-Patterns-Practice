@@ -16,9 +16,10 @@ Each pattern includes a description, a diagram with an example, guidance on when
 - [Prototype](#-prototype-pattern)
 - [Singleton](#-singleton-pattern)
 
-### Structuras
+### Structural
 
 - [Adapter](#-adapter-pattern)
+-[Bridge](#-bridge-pattern)
 ---
 
 ## 🏭 Factory Method
@@ -379,6 +380,107 @@ reproducing <Blinding Lights_TheWeekend>.flac
 WAVAdapter ? using an external WAVPlayer...
 reproducing <Blinding Lights_TheWeekend>.wav
 
+```
+
+---
+
+## 🌉 Bridge Pattern
+
+### 🧠 General Description
+- **Bridge:** Separates an abstraction from its implementation so that both can evolve independently.  
+- **Context in this example:** The `Remote` hierarchy represents the **abstraction layer** (controls that users interact with), while the `Device` hierarchy represents the **implementation layer** (concrete devices that perform real operations such as turning on/off, changing volume, or switching channels).  
+- **Bridge connection:** The abstraction (`Remote`) maintains a reference to a `Device`, allowing any remote to control any type of device without tight coupling.  
+- **Clients:** The main program (`ClientMain`) interacts only with remotes, which delegate operations to the devices underneath.
+
+The main goal of this pattern is to **decouple high-level control logic from low-level implementations**, promoting **flexibility, scalability, and clean design**.
+
+### Diagram of example
+
+![Bridge](images/bridge.png)
+
+
+### 🚀 When to use it
+
+| Situation | Description |
+|-----------|-------------|
+| Multiple hierarchies | When you have two independent dimensions that would otherwise lead to an explosion of subclasses. |
+| Decoupled design | When you want to separate an abstraction (interface or control logic) from its implementation. |
+| Independent extensions | When both sides (abstraction and implementation) should be extendable without affecting each other. |
+| Runtime flexibility | When you need to change the implementation of an abstraction dynamically. |
+
+
+### 💡 Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| Decoupling | Abstraction and implementation can vary independently. |
+| Extensibility | New remotes or devices can be added without modifying existing code. |
+| Reduced subclass explosion | Avoids combinatorial growth of classes like `AdvancedTvRemote`, `BasicRadioRemote`, etc. |
+
+### ⚠️ Disadvantages
+
+- Increases the **number of classes** due to the two hierarchies.  
+- Can be **overkill for simple cases** where a single implementation is sufficient.  
+- Requires **careful design** to clearly identify what belongs to the abstraction and what to the implementation.  
+
+### 🧪 Example output
+
+```
+=== BasicRemote controlling TV ===
+TV turned on
+[Remote] Power ON
+Volume set to 30%
+[Remote] Volume up ? 30%
+Channel set to 2
+[Remote] Channel up ? 2
+-------------------------------
+TV Device Status:
+Power: on
+Channel: 2
+Volume: 30%
+-------------------------------
+
+=== AdvancedRemote controlling TV ===
+[AdvancedRemote] Changing to movie mode...
+Volume set to 30%
+[AdvancedRemote] Volume set to 30%
+Channel set to 5
+[AdvancedRemote] Switched to channel 5
+[AdvancedRemote] Mute activated
+Volume set to 0%
+-------------------------------
+TV Device Status:
+Power: on
+Channel: 5
+Volume: 0%
+-------------------------------
+
+=== AdvancedRemote controlling Radio ===
+Radio turned on
+[Remote] Power ON
+[AdvancedRemote] Radio: Scanning next frequency...       
+Channel set to 137,5 MHz FM
+[Remote] Channel up ? 100
+-------------------------------
+Radio Device Status:
+Power: on
+BandFM
+Frequency: 137,5 MHz FM
+Volume: 50%
+-------------------------------
+
+=== AdvancedRemote controlling Smart Speaker ===
+Smart Speaker booting up...
+[Remote] Power ON
+[AdvancedRemote] Smart Speaker: Playing favorite playlist
+Smart Speaker switched to playlist #1
+[AdvancedRemote] Switched to channel 1
+-------------------------------
+Smart Speaker Status:
+Power: on
+Bluetooth: Disconnected
+Current Playlist: #1
+Volume: 40%
 ```
 
 ---
