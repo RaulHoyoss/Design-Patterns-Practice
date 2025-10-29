@@ -19,7 +19,7 @@ Each pattern includes a description, a diagram with an example, guidance on when
 ### Structural
 
 - [Adapter](#-adapter-pattern)
--[Bridge](#-bridge-pattern)
+- [Bridge](#-bridge-pattern)
 ---
 
 ## 🏭 Factory Method
