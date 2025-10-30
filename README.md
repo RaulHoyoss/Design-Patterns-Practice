@@ -15,12 +15,13 @@ Each pattern includes a description, a diagram with an example, guidance on when
 - [Builder](#-builder-pattern)
 - [Prototype](#-prototype-pattern)
 - [Singleton](#-singleton-pattern)
-- [Composite](#-composite-pattern)
 
 ### Structural
 
 - [Adapter](#-adapter-pattern)
 - [Bridge](#-bridge-pattern)
+- [Composite](#-composite-pattern)
+
 ---
 
 ## 🏭 Factory Method
