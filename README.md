@@ -15,6 +15,7 @@ Each pattern includes a description, a diagram with an example, guidance on when
 - [Builder](#-builder-pattern)
 - [Prototype](#-prototype-pattern)
 - [Singleton](#-singleton-pattern)
+- [Composite](#-composite-pattern)
 
 ### Structural
 
@@ -347,7 +348,7 @@ The main goal of this pattern is to **allow objects with incompatible interfaces
 | Flexible integration | When you need to integrate third-party libraries or legacy code into your system. |
 | Unified API | When you want your client code to interact with a single, consistent interface. |
 
----
+
 
 ### 💡 Benefits
 
@@ -358,7 +359,7 @@ The main goal of this pattern is to **allow objects with incompatible interfaces
 | Decoupling | The client depends on the adapter interface, not on specific implementations. |
 | Flexible extension | Adding support for new formats only requires creating a new adapter. |
 
----
+
 
 ### ⚠️ Disadvantages
 
@@ -367,7 +368,7 @@ The main goal of this pattern is to **allow objects with incompatible interfaces
 - May **increase complexity** if adapters are overused.  
 - Requires careful design to avoid adapters becoming “God objects” that handle too many conversions.  
 
----
+
 
 ### 🧪 Example output
 
@@ -481,6 +482,77 @@ Power: on
 Bluetooth: Disconnected
 Current Playlist: #1
 Volume: 40%
+```
+
+---
+
+## 🌳 Composite Pattern
+
+### 🧠 General Description
+- **Composite:** Allows you to treat individual objects and compositions of objects **uniformly** by organizing them into a **tree structure**.  
+- **Context in this example:** Each `MisionComponent` represents a **common interface** for all missions.  
+  - `SimpleMision` (leaf) represents a **single mission** with its own details and reward.  
+  - `CompositeMision` (composite) represents a **group of missions** (main campaigns, side quests, etc.) that can contain both simple and composite missions.  
+- **Composite connection:** `CompositeMision` holds a list of `MisionComponent` elements (which can be either simple or composite).  
+- **Client:** The main program (`Main`) interacts with missions through the common interface, without worrying about whether a mission is simple or composed.
+
+The main goal of this pattern is to **build hierarchical structures of objects** while keeping **uniform access and recursive behavior**.
+
+### Diagram of example
+
+![Composite](images/composite.png)
+
+### 🚀 When to use it
+
+| Situation | Description |
+|-----------|-------------|
+| Hierarchical structures | When your objects naturally form a tree (e.g., folders, GUI elements, game missions). |
+| Uniform treatment | When you want clients to treat single objects and groups of objects the same way. |
+| Recursive operations | When operations should propagate automatically through nested structures. |
+| Simplified client code | When you want to hide complexity from the client by exposing only one interface. |
+
+### 💡 Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| Uniformity | Simple and composite objects share the same interface. |
+| Recursive processing | Operations like `showDetails()` or `calculateReward()` work naturally on trees. |
+| Scalability | Easy to add new components without changing existing code. |
+| Clean structure | Perfect for representing part–whole hierarchies. |
+
+### ⚠️ Disadvantages
+
+- Can make **design more abstract and complex** for small or flat structures.  
+- Debugging or controlling behavior can be tricky when many recursive calls occur.  
+- May require **type checks (`instanceof`)** if the abstraction isn't perfectly designed.  
+
+### 🧪 Example output
+
+```
+Composite mision: Main Campaign
+  Composite mision: Early Adventures
+    - Simple Mission: Hunt Wolves
+      Eliminate 5 wolves near the forest entrance.
+      reward: 100
+    - Simple Mission: Collect Healing Herbs
+      Gather 10 herbs for the village healer.
+      reward: 120
+  Composite mision: Preparation for the Final Battle
+    - Simple Mission: Forge the Sacred Sword
+      Craft a sword powerful enough to harm dragons.
+      reward: 250
+    - Simple Mission: Train with the Sword Master
+      Learn new combat techniques.
+      reward: 180
+  Composite mision: Rescue Missions
+    - Simple Mission: Rescue the Trapped Villager
+      Find and rescue the villager trapped in the mine.
+      reward: 200
+    - Simple Mission: Slay the Dragon
+      Defeat the dragon terrorizing the kingdom.
+      reward: 600
+
+Total reward for completing the main campaign: 1450 gold
 ```
 
 ---
